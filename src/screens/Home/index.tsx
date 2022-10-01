@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 import { styles } from "./styles";
 import { StatusBar } from "expo-status-bar";
+import { supabase } from "../../services/supabase";
 
 interface UserProps {
   id: string,
@@ -15,30 +16,20 @@ interface UserProps {
 export function Home() {
   const navigation = useNavigation<any>();
 
-  const [users, setUsers] = useState<UserProps[]>([
-    {
-      id: "1",
-      name: "Ruan Pablo",
-      email: "ruangoio01@gmail.com",
-      age: 18
-    },
-    {
-      id: "2",
-      name: "Ruan Pablo",
-      email: "ruangoio01@gmail.com",
-      age: 18
-    },
-    {
-      id: "3",
-      name: "Ruan Pablo",
-      email: "ruangoio01@gmail.com",
-      age: 18
-    },
-  ]);
+  const [users, setUsers] = useState<UserProps[]>([]);
 
   function goToNewContact() {
     navigation.navigate("NewContact");
   }
+
+  async function getContacts() {
+    const { data } = await supabase.get("/contacts");
+    setUsers(data);
+  }
+
+  useFocusEffect(useCallback(() => {
+    getContacts();
+  }, [users]));
 
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>
