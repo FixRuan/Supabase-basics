@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { styles } from "./styles";
 import { StatusBar } from "expo-status-bar";
@@ -12,6 +13,8 @@ interface UserProps {
 }
 
 export function Home() {
+  const navigation = useNavigation<any>();
+
   const [users, setUsers] = useState<UserProps[]>([
     {
       id: "1",
@@ -33,6 +36,9 @@ export function Home() {
     },
   ]);
 
+  function goToNewContact() {
+    navigation.navigate("NewContact");
+  }
 
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -40,7 +46,7 @@ export function Home() {
 
       <View style={styles.header}>
         <Text style={styles.headerText}>Usuários</Text>
-        <TouchableOpacity style={styles.newUser}>
+        <TouchableOpacity onPress={goToNewContact} style={styles.newUser}>
           <Text>Novo</Text>
         </TouchableOpacity>
       </View>

@@ -5,8 +5,15 @@ import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 import { styles } from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
 export function NewContact() {
+  const navigation = useNavigation<any>();
+
+  function handleGoBack() {
+    navigation.goBack();
+  }
+
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>
       <StatusBar
@@ -16,6 +23,7 @@ export function NewContact() {
 
       <View style={styles.header}>
         <Feather
+          onPress={handleGoBack}
           style={{ position: "absolute", left: 10 }}
           name="arrow-left"
           size={30}
