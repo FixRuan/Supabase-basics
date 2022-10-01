@@ -1,10 +1,12 @@
 import React from "react";
-import { Home } from "./src/screens/Home";
-import { NewContact } from "./src/screens/NewContact";
+import { NavigationContainer } from "@react-navigation/native";
+import { StackRoute } from "./src/Router";
 
 
 export default function App() {
   return (
-    <NewContact />
+    <NavigationContainer>
+      <StackRoute />
+    </NavigationContainer>
   );
 }

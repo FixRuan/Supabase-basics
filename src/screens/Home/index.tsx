@@ -35,7 +35,7 @@ export function Home() {
 
 
   return (
-    <View>
+    <View style={{ flex: 1, backgroundColor: "#fff" }}>
       <StatusBar translucent={false} backgroundColor="#fff" />
 
       <View style={styles.header}>

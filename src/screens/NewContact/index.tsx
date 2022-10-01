@@ -8,7 +8,7 @@ import { styles } from "./styles";
 
 export function NewContact() {
   return (
-    <View>
+    <View style={{ flex: 1, backgroundColor: "#fff" }}>
       <StatusBar
         translucent={false}
         backgroundColor="#fff"
