@@ -11,7 +11,10 @@ module.exports = function (api) {
         "whitelist": null,
         "safe": false,
         "allowUndefined": true
-      }]
+      }],
+      ["module-resolver", {
+        extensions: [".tsx", ".ts", ".js", ".json"],
+      }],
     ],
   };
 };
