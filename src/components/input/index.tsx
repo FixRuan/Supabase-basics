@@ -1,5 +1,5 @@
 import React from "react";
-import { TextInputProps } from "react-native";
+import { TextInputProps, View } from "react-native";
 
 import {
   Container,
@@ -20,7 +20,7 @@ export function Input({ placeholder, iconName, label, ...rest }: InputProps) {
   const { colors } = useTheme();
 
   return (
-    <>
+    <View>
       <InputLabel>{label}</InputLabel>
       <Container>
         <MaterialIcons name={iconName} size={22} color={colors.gray100} />
@@ -30,6 +30,6 @@ export function Input({ placeholder, iconName, label, ...rest }: InputProps) {
           placeholderTextColor={colors.gray100}
         />
       </Container>
-    </>
+    </View>
   );
 }

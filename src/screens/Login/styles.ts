@@ -1,11 +1,11 @@
 import styled from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
    flex: 1;
    background-color: ${({ theme }) => theme.colors.background};
-   padding: 16px 24px 0px 24px;
-   align-items: center;
+   /* padding: 16px 24px 0px 24px; */
+   /* align-items: center; */
 `;
 
 export const Title = styled.Text`
@@ -18,4 +18,27 @@ export const SubTitle = styled.Text`
   font-family: ${({ theme }) => theme.fonts.Inter.regular};
   color: ${({ theme }) => theme.colors.gray100};
   font-size: ${RFValue(14)}px;
+  margin-bottom: 28px;
+`;
+
+export const Button = styled.TouchableOpacity`
+  margin-top: 12px;
+  width: 100%;
+  background-color: ${({ theme }) => theme.colors.green};
+  height: 42px;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+`;
+
+export const ButtonText = styled.Text`
+  color: ${({ theme }) => theme.colors.black};
+  font-size: ${RFValue(16)}px;
+  font-family: ${({ theme }) => theme.fonts.Inter.semiBold};
+`;
+
+export const UnderLineText = styled(SubTitle)`
+  text-decoration: underline;
+  margin-bottom: 12px;
 `;

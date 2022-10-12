@@ -8,7 +8,7 @@ export const Container = styled.View`
    padding: 6px;
    align-items: center;
    flex-direction: row;
-   margin-bottom: -20px;
+   margin-bottom: 12px;
 `;
 
 export const Input = styled.TextInput`
@@ -19,8 +19,7 @@ export const Input = styled.TextInput`
 `;
 
 export const InputLabel = styled.Text`
-  margin-top: 36px;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
   align-self: flex-start;
   font-family: ${({ theme }) => theme.fonts.Inter.semiBold};
   color: ${({ theme }) => theme.colors.gray300};
