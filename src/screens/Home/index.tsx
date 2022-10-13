@@ -14,7 +14,7 @@ interface UserProps {
 }
 
 export function Home() {
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation();
 
   const [users, setUsers] = useState<UserProps[]>([]);
 

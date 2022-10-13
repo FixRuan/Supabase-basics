@@ -16,11 +16,17 @@ import {
 } from "./styles";
 
 import { Dimensions } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 export function Login() {
   const { colors } = useTheme();
+  const navigation = useNavigation();
+
+  function handleSignup() {
+    navigation.navigate("Signup");
+  }
 
   return (
     <Container styled={{ width: windowWidth, minHeight: windowHeight }}>
@@ -54,7 +60,10 @@ export function Login() {
         </Button>
 
         <UnderLineText>Esqueceu sua senha?</UnderLineText>
-        <UnderLineText>Nao possui conta? crie uma agora!?</UnderLineText>
+
+        <TouchableOpacity onPress={handleSignup}>
+          <UnderLineText>Não possui conta? crie uma agora!</UnderLineText>
+        </TouchableOpacity>
 
       </ScrollView>
     </Container>
