@@ -1,12 +1,7 @@
-import axios from "axios";
+import { createClient } from "@supabase/supabase-js";
 
-const SUPABASE_API = process.env.SUPABASE_API;
 
-const supabase = axios.create({
-  baseURL: "https://mpyrbxvkxkbdoqdlfehj.supabase.co/rest/v1",
-  headers: {
-    apiKey: SUPABASE_API
-  }
-});
+const SERVICE_KEY = process.env.SERVICEC_KEY;
+const SUPABASE_BASEURL = process.env.SUPABASE_BASEURL;
 
-export { supabase };
+export const supabase = createClient(SUPABASE_BASEURL, SERVICE_KEY);
