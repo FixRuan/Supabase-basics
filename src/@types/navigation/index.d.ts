@@ -16,6 +16,7 @@ export declare global {
       Signup: undefined;
       NextSignup: NextSignupProps;
       FinishSignUp: undefined;
+      Home: undefined;
     }
   }
 }

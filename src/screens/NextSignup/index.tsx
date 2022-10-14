@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Alert, ScrollView, TouchableOpacity } from "react-native";
 
+import { useUserController } from "../../hooks/UserController/userController";
+
 import * as Yup from "yup";
-import { supabase } from "../../services/supabase";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
@@ -20,7 +21,6 @@ import {
   SectionTitle,
   Title
 } from "./styles";
-import { useUserController } from "../../hooks/UserController/userController";
 
 interface ParamsProps {
   user: {

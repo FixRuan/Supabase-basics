@@ -56,8 +56,6 @@ export function UserControllerProvider({ children }: UserControllerProviderProps
     }
   }
 
-
-
   return (
     <UserContext.Provider value={{
       CreateUser,
