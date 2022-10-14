@@ -4,7 +4,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
 
 import {
-  Container, Input
+  Container,
+  Input
 } from "./styles";
 
 interface Props extends TextInputProps {
