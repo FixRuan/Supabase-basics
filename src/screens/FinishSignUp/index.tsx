@@ -17,7 +17,7 @@ export function FinishSignUp() {
   const navigation = useNavigation();
 
   function handleGoHome() {
-    navigation.navigate("Home");
+    navigation.navigate("login");
   }
 
   return (

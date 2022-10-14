@@ -79,8 +79,7 @@ export function NextSignup() {
         Alert.alert(error.message);
       }
 
-      Alert.alert(error);
-      console.log(error);
+      console.log(error.message);
     }
   }
 

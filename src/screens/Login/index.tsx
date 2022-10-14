@@ -1,14 +1,18 @@
-import React from "react";
-import { ScrollView, TouchableOpacity, Dimensions } from "react-native";
+import React, { useState } from "react";
+import { ScrollView, TouchableOpacity, Dimensions, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { useTheme } from "styled-components/native";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useUserController } from "../../hooks/UserController/userController";
 
 import LogoSVG from "../../assets/logo.svg";
 import { Input } from "../../components/input";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
+const USER_STORAGE = "@supabase:user";
 
 import {
   Button,
@@ -19,12 +23,40 @@ import {
   UnderLineText,
 } from "./styles";
 
+interface UserResponseProps {
+  created_at: string;
+  email: string;
+  id: number;
+  name: string;
+  username: string;
+}
+
+
 export function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { EmailSignInAuth, getUserByEmail, setUserData } = useUserController();
+
   const { colors } = useTheme();
   const navigation = useNavigation();
 
   function handleSignup() {
     navigation.navigate("Signup");
+  }
+
+  async function handleLogin() {
+    const data: any = await EmailSignInAuth(email, password);
+
+    if (data.message === "Invalid login credentials") {
+      return Alert.alert("Email e/ou senha inválidos");
+    }
+
+    const user: UserResponseProps[] = await getUserByEmail(data.user.email);
+
+    setUserData(user[0]);
+    await AsyncStorage.setItem(USER_STORAGE, JSON.stringify(user[0]));
+    navigation.navigate("Home");
   }
 
   return (
@@ -45,6 +77,8 @@ export function Login() {
           placeholder="Digite seu e-mail"
           label="Endereço de email"
           keyboardType="email-address"
+          value={email}
+          onChangeText={setEmail}
         />
 
         <Input
@@ -52,9 +86,12 @@ export function Login() {
           secureTextEntry={true}
           placeholder="Digite sua senha"
           label="Sua senha"
+          value={password}
+          onChangeText={setPassword}
+          type="password"
         />
 
-        <Button as={TouchableOpacity} activeOpacity={0.8}>
+        <Button as={TouchableOpacity} onPress={handleLogin} activeOpacity={0.8}>
           <ButtonText>Entrar na plataforma</ButtonText>
         </Button>
 
