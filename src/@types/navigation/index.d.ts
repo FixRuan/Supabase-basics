@@ -15,6 +15,7 @@ export declare global {
       NewContact: undefined;
       Signup: undefined;
       NextSignup: NextSignupProps;
+      FinishSignUp: undefined;
     }
   }
 }

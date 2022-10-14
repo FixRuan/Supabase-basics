@@ -5,6 +5,7 @@ import { StackRoute } from "./src/Router";
 import { ThemeProvider } from "styled-components";
 import { defaultTheme } from "./src/styles/theme";
 import { useCachedResources } from "./src/hooks/useCachedResources";
+import { UserControllerProvider } from "./src/hooks/UserController/userController";
 
 
 export default function App() {
@@ -16,9 +17,11 @@ export default function App() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <NavigationContainer>
-        <StackRoute />
-      </NavigationContainer>
+      <UserControllerProvider>
+        <NavigationContainer>
+          <StackRoute />
+        </NavigationContainer>
+      </UserControllerProvider>
     </ThemeProvider>
   );
 }
