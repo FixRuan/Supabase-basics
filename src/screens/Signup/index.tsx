@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
@@ -39,57 +39,60 @@ export function Signup() {
   return (
     <Container>
       <StatusBar style="light" translucent={false} backgroundColor={colors.background} />
+      <ScrollView>
 
-      <Header>
-        <TouchableOpacity onPress={handleGoback}>
-          <Feather size={24} name="arrow-left" color={colors.gray200} />
-        </TouchableOpacity>
+        <Header>
+          <TouchableOpacity onPress={handleGoback}>
+            <Feather size={24} name="arrow-left" color={colors.gray200} />
+          </TouchableOpacity>
 
-        <BulletWrapper>
-          <Bullet active />
-          <Bullet />
-        </BulletWrapper>
-      </Header>
+          <BulletWrapper>
+            <Bullet active />
+            <Bullet />
+          </BulletWrapper>
+        </Header>
 
-      <Form>
-        <Title>cadastre-se{"\n"}abaixo</Title>
-        <SectionTitle>1. Dados</SectionTitle>
+        <Form>
+          <Title>cadastre-se{"\n"}abaixo</Title>
+          <SectionTitle>1. Dados</SectionTitle>
 
-        <TextInput
-          iconName="people-alt"
-          placeholder="Nome"
-          autoCapitalize="words"
-          value={name}
-          onChangeText={setName}
+          <TextInput
+            iconName="people-alt"
+            placeholder="Nome"
+            autoCapitalize="words"
+            value={name}
+            onChangeText={setName}
+          />
+
+          <TextInput
+            iconName="mail"
+            keyboardType="email-address"
+            placeholder="E-mail"
+            autoCapitalize="none"
+            value={email}
+            onChangeText={setEmail}
+          />
+
+          <TextInput
+            iconName="account-box"
+            placeholder="Usuário"
+            autoCapitalize="none"
+            value={username}
+            onChangeText={setUsername}
+          />
+
+        </Form>
+
+        <Button
+          title="Próximo"
+          bgColor={colors.green}
+          color={colors.black}
+          // onPress={handleNextSignUp}
+          onPress={() => console.log(name, email, username)}
+          activeOpacity={0.7}
         />
 
-        <TextInput
-          iconName="mail"
-          keyboardType="email-address"
-          placeholder="E-mail"
-          autoCapitalize="none"
-          value={email}
-          onChangeText={setEmail}
-        />
-
-        <TextInput
-          iconName="account-box"
-          placeholder="Usuário"
-          autoCapitalize="none"
-          value={username}
-          onChangeText={setUsername}
-        />
-
-      </Form>
-
-      <Button
-        title="Próximo"
-        bgColor={colors.green}
-        color={colors.black}
-        // onPress={handleNextSignUp}
-        onPress={() => console.log(name, email, username)}
-        activeOpacity={0.7}
-      />
+      </ScrollView>
     </Container>
   );
 }

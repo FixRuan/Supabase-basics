@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextInput as RNInput, TextInputProps } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
@@ -7,31 +7,43 @@ import { Container, Input } from "./styles";
 
 interface Props extends TextInputProps {
   iconName: React.ComponentProps<typeof MaterialIcons>["name"];
-  placeholder: string;
+  value?: string;
 }
 
 export function TextInput({
   iconName,
-  placeholder,
+  value,
   ...rest
 }: Props) {
 
+  const [isFocused, setIsfocused] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
+
   const { colors } = useTheme();
-  const blur = false;
+
+  function handleInputFocus() {
+    setIsfocused(true);
+  }
+
+  function handleInputBlur() {
+    setIsfocused(false);
+    setIsFilled(!!value);
+  }
 
   return (
-    <Container focused={false}>
+    <Container focused={isFocused}>
       <MaterialIcons
         name={iconName}
         size={24}
-        color={blur ? colors.green : colors.gray100}
+        color={isFocused || isFilled && value != "" ? colors.green : colors.gray100}
       />
 
       <Input
         {...rest}
         as={RNInput}
-        placeholder={placeholder}
         placeholderTextColor={colors.gray100}
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
       />
     </Container>
   );
