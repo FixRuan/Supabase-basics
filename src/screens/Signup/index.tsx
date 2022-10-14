@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { ScrollView, TouchableOpacity } from "react-native";
+import { Alert, ScrollView, TouchableOpacity } from "react-native";
 
+import * as Yup from "yup";
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { useTheme } from "styled-components/native";
@@ -19,6 +20,13 @@ import {
   Title,
 } from "./styles";
 
+const schema = Yup.object().shape({
+  username: Yup.string().required("Username é obrigatório"),
+  email: Yup.string()
+    .email("Digite um e-mail válido")
+    .required("E-mail é obrigatório"),
+  name: Yup.string().required("Nome é obrigatório"),
+});
 
 export function Signup() {
   const [name, setName] = useState("");
@@ -28,8 +36,22 @@ export function Signup() {
   const { colors } = useTheme();
   const navigation = useNavigation();
 
-  function handleNextSignUp() {
-    navigation.navigate("NextSignup");
+  async function handleNextSignUp() {
+    try {
+      const userData = await schema.validate({
+        name: name.trim(),
+        email: email.trim(),
+        username: username.trim()
+      });
+
+      navigation.navigate("NextSignup", { user: userData });
+
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        Alert.alert(error.message);
+      }
+    }
+
   }
 
   function handleGoback() {
@@ -87,8 +109,7 @@ export function Signup() {
           title="Próximo"
           bgColor={colors.green}
           color={colors.black}
-          // onPress={handleNextSignUp}
-          onPress={() => console.log(name, email, username)}
+          onPress={handleNextSignUp}
           activeOpacity={0.7}
         />
 

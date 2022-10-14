@@ -1,7 +1,11 @@
-interface NextSignupProps {
+type UserData = {
   name: string;
   email: string;
   username: string;
+}
+
+interface NextSignupProps {
+  user: username;
 }
 
 
