@@ -1,12 +1,9 @@
-import { Feather, MaterialIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { TextInput, TextInputProps, TouchableOpacity } from "react-native";
+import { Feather, MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
 
-import {
-  Container,
-  Input
-} from "./styles";
+import { Container, Input } from "./styles";
 
 interface Props extends TextInputProps {
   iconName: React.ComponentProps<typeof MaterialIcons>["name"];

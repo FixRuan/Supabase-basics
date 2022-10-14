@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import { ScrollView, TouchableOpacity } from "react-native";
 
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { useTheme } from "styled-components/native";
+
+import { PasswordInput } from "../../components/PasswordInput";
 import { Bullet } from "../../components/Bullet";
 import { Button } from "../../components/Button";
+
 
 import {
   BulletWrapper,
@@ -15,8 +19,7 @@ import {
   SectionTitle,
   Title
 } from "./styles";
-import { PasswordInput } from "../../components/PasswordInput";
-import { ScrollView } from "react-native";
+
 
 export function NextSignup() {
   const [password, setPassword] = useState("");
@@ -25,12 +28,18 @@ export function NextSignup() {
   const { colors } = useTheme();
   const navigation = useNavigation();
 
+  function handleGoback() {
+    navigation.goBack();
+  }
+
   return (
     <Container>
       <StatusBar style="light" translucent={false} backgroundColor={colors.background} />
       <ScrollView>
         <Header>
-          <Feather size={24} name="arrow-left" color={colors.gray200} />
+          <TouchableOpacity onPress={handleGoback}>
+            <Feather size={24} name="arrow-left" color={colors.gray200} />
+          </TouchableOpacity>
 
           <BulletWrapper>
             <Bullet />

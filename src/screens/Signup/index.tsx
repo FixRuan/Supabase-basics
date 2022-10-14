@@ -1,9 +1,14 @@
 import React from "react";
+import { TouchableOpacity } from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { useTheme } from "styled-components/native";
 import { Feather } from "@expo/vector-icons";
 
+import { Bullet } from "../../components/Bullet";
+import { TextInput } from "../../components/TextInput";
+import { Button } from "../../components/Button";
 
 import {
   BulletWrapper,
@@ -13,10 +18,6 @@ import {
   SectionTitle,
   Title,
 } from "./styles";
-import { Bullet } from "../../components/Bullet";
-import { TextInput } from "../../components/TextInput";
-import { Button } from "../../components/Button";
-import { useNavigation } from "@react-navigation/native";
 
 
 export function Signup() {
@@ -27,12 +28,18 @@ export function Signup() {
     navigation.navigate("NextSignup");
   }
 
+  function handleGoback() {
+    navigation.goBack();
+  }
+
   return (
     <Container>
       <StatusBar style="light" translucent={false} backgroundColor={colors.background} />
 
       <Header>
-        <Feather size={24} name="arrow-left" color={colors.gray200} />
+        <TouchableOpacity onPress={handleGoback}>
+          <Feather size={24} name="arrow-left" color={colors.gray200} />
+        </TouchableOpacity>
 
         <BulletWrapper>
           <Bullet active />

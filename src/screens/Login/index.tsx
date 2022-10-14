@@ -1,10 +1,14 @@
 import React from "react";
+import { ScrollView, TouchableOpacity, Dimensions } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
-import { ScrollView, TouchableOpacity } from "react-native";
 import { useTheme } from "styled-components/native";
 
 import LogoSVG from "../../assets/logo.svg";
 import { Input } from "../../components/input";
+
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 
 import {
   Button,
@@ -14,11 +18,6 @@ import {
   Title,
   UnderLineText,
 } from "./styles";
-
-import { Dimensions } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
 
 export function Login() {
   const { colors } = useTheme();
