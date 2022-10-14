@@ -19,4 +19,5 @@ export const Container = styled.View<ContainerProps>`
 export const Input = styled.TextInput`
   flex: 1;
   margin-left: 18px;
+  color: ${({ theme }) => theme.colors.white};
 `;

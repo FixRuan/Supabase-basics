@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
@@ -21,6 +21,10 @@ import {
 
 
 export function Signup() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+
   const { colors } = useTheme();
   const navigation = useNavigation();
 
@@ -55,6 +59,8 @@ export function Signup() {
           iconName="people-alt"
           placeholder="Nome"
           autoCapitalize="words"
+          value={name}
+          onChangeText={setName}
         />
 
         <TextInput
@@ -62,12 +68,16 @@ export function Signup() {
           keyboardType="email-address"
           placeholder="E-mail"
           autoCapitalize="none"
+          value={email}
+          onChangeText={setEmail}
         />
 
         <TextInput
           iconName="account-box"
           placeholder="Usuário"
           autoCapitalize="none"
+          value={username}
+          onChangeText={setUsername}
         />
 
       </Form>
@@ -76,7 +86,8 @@ export function Signup() {
         title="Próximo"
         bgColor={colors.green}
         color={colors.black}
-        onPress={handleNextSignUp}
+        // onPress={handleNextSignUp}
+        onPress={() => console.log(name, email, username)}
         activeOpacity={0.7}
       />
     </Container>
