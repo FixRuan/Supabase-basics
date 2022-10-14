@@ -21,6 +21,10 @@ export const BulletWrapper = styled.View`
   align-items: center;
 `;
 
+export const Form = styled.View`
+  margin-bottom: 48px;
+`;
+
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.Inter.bold};
   font-size: ${RFValue(32)}px;

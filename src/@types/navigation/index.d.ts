@@ -3,6 +3,7 @@ export declare global {
     interface RootParamList {
       NewContact: undefined;
       Signup: undefined;
+      NextSignup: undefined;
     }
   }
 }

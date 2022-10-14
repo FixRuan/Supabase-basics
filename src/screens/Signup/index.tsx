@@ -8,16 +8,24 @@ import { Feather } from "@expo/vector-icons";
 import {
   BulletWrapper,
   Container,
+  Form,
   Header,
   SectionTitle,
   Title,
 } from "./styles";
 import { Bullet } from "../../components/Bullet";
 import { TextInput } from "../../components/TextInput";
+import { Button } from "../../components/Button";
+import { useNavigation } from "@react-navigation/native";
 
 
 export function Signup() {
   const { colors } = useTheme();
+  const navigation = useNavigation();
+
+  function handleNextSignUp() {
+    navigation.navigate("NextSignup");
+  }
 
   return (
     <Container>
@@ -32,23 +40,37 @@ export function Signup() {
         </BulletWrapper>
       </Header>
 
-      <Title>cadastre-se{"\n"}abaixo</Title>
-      <SectionTitle>1. Dados</SectionTitle>
+      <Form>
+        <Title>cadastre-se{"\n"}abaixo</Title>
+        <SectionTitle>1. Dados</SectionTitle>
 
-      <TextInput
-        iconName="people-alt"
-        placeholder="Nome"
-      />
+        <TextInput
+          iconName="people-alt"
+          placeholder="Nome"
+          autoCapitalize="words"
+        />
 
-      <TextInput
-        iconName="mail"
-        keyboardType="email-address"
-        placeholder="E-mail"
-      />
+        <TextInput
+          iconName="mail"
+          keyboardType="email-address"
+          placeholder="E-mail"
+          autoCapitalize="none"
+        />
 
-      <TextInput
-        iconName="account-box"
-        placeholder="Usuário"
+        <TextInput
+          iconName="account-box"
+          placeholder="Usuário"
+          autoCapitalize="none"
+        />
+
+      </Form>
+
+      <Button
+        title="Próximo"
+        bgColor={colors.green}
+        color={colors.black}
+        onPress={handleNextSignUp}
+        activeOpacity={0.7}
       />
     </Container>
   );
