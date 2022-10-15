@@ -1,5 +1,4 @@
 import React from "react";
-import { LogBox } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { StackRoute } from "./src/Router";
 
@@ -10,10 +9,6 @@ import { UserControllerProvider } from "./src/hooks/UserController/userControlle
 
 
 export default function App() {
-  LogBox.ignoreLogs([
-    "ViewPropTypes will be removed from React Native. Migrate to ViewPropTypes exported from 'deprecated-react-native-prop-types'.",
-  ]);
-
   const isLoadingComplete = useCachedResources();
 
   if (!isLoadingComplete) {
