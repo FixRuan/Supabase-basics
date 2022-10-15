@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Alert, ScrollView, TouchableOpacity } from "react-native";
+import React, { useRef, useState } from "react";
+import { Alert, Keyboard, ScrollView, TouchableOpacity } from "react-native";
 
 import { useUserController } from "../../hooks/UserController/userController";
 
@@ -39,6 +39,7 @@ const schema = Yup.object().shape({
 export function NextSignup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const confirmPasswordRef = useRef(null);
 
   const { CreateUser } = useUserController();
 
@@ -107,13 +108,18 @@ export function NextSignup() {
             iconName="lock"
             value={password}
             onChangeText={setPassword}
+            onSubmitEditing={() => confirmPasswordRef.current.focus()}
+            blurOnSubmit={false}
           />
 
           <PasswordInput
+            ref={confirmPasswordRef}
             placeholder="Confirmar senha"
             iconName="lock"
             value={confirmPassword}
             onChangeText={setConfirmPassword}
+            onSubmitEditing={() => Keyboard.dismiss()}
+            blurOnSubmit={false}
           />
 
         </Form>

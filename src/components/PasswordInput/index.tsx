@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react/display-name */
+import React, { forwardRef, useState } from "react";
 import { TextInput, TextInputProps, TouchableOpacity } from "react-native";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
@@ -10,7 +11,9 @@ interface Props extends TextInputProps {
   value?: string;
 }
 
-export function PasswordInput({ iconName, value, ...rest }: Props) {
+export const PasswordInput = forwardRef<TextInput, Props>((
+  { iconName, value, ...rest }, ref
+) => {
   const [hidePassword, setHidePassword] = useState(true);
   const [isFocused, setIsfocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
@@ -39,6 +42,7 @@ export function PasswordInput({ iconName, value, ...rest }: Props) {
       />
 
       <Input
+        ref={ref}
         {...rest}
         as={TextInput}
         placeholderTextColor={colors.gray100}
@@ -57,4 +61,4 @@ export function PasswordInput({ iconName, value, ...rest }: Props) {
 
     </Container>
   );
-}
+});
