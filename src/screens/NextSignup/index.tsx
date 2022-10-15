@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Alert, Keyboard, ScrollView, TouchableOpacity } from "react-native";
 
+import { Root, Popup } from "popup-ui-new";
 import { useUserController } from "../../hooks/UserController/userController";
 
 import * as Yup from "yup";
@@ -77,62 +78,69 @@ export function NextSignup() {
 
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
-        Alert.alert(error.message);
+        Popup.show({
+          type: "Danger",
+          title: "Login",
+          button: true,
+          textBody: error.message,
+          buttonText: "Ok",
+          callback: () => Popup.hide()
+        });
       }
-
-      console.log(error.message);
     }
   }
 
   return (
-    <Container>
-      <StatusBar style="light" translucent={false} backgroundColor={colors.background} />
-      <ScrollView>
-        <Header>
-          <TouchableOpacity onPress={handleGoback}>
-            <Feather size={24} name="arrow-left" color={colors.gray200} />
-          </TouchableOpacity>
+    <Root>
+      <Container>
+        <StatusBar style="light" translucent={false} backgroundColor={colors.background} />
+        <ScrollView>
+          <Header>
+            <TouchableOpacity onPress={handleGoback}>
+              <Feather size={24} name="arrow-left" color={colors.gray200} />
+            </TouchableOpacity>
 
-          <BulletWrapper>
-            <Bullet />
-            <Bullet active />
-          </BulletWrapper>
-        </Header>
+            <BulletWrapper>
+              <Bullet />
+              <Bullet active />
+            </BulletWrapper>
+          </Header>
 
-        <Form>
-          <Title>cadastre-se{"\n"}abaixo</Title>
-          <SectionTitle>2. Senha</SectionTitle>
+          <Form>
+            <Title>cadastre-se{"\n"}abaixo</Title>
+            <SectionTitle>2. Senha</SectionTitle>
 
-          <PasswordInput
-            placeholder="Senha"
-            iconName="lock"
-            value={password}
-            onChangeText={setPassword}
-            onSubmitEditing={() => confirmPasswordRef.current.focus()}
-            blurOnSubmit={false}
+            <PasswordInput
+              placeholder="Senha"
+              iconName="lock"
+              value={password}
+              onChangeText={setPassword}
+              onSubmitEditing={() => confirmPasswordRef.current.focus()}
+              blurOnSubmit={false}
+            />
+
+            <PasswordInput
+              ref={confirmPasswordRef}
+              placeholder="Confirmar senha"
+              iconName="lock"
+              value={confirmPassword}
+              onChangeText={setConfirmPassword}
+              onSubmitEditing={() => Keyboard.dismiss()}
+              blurOnSubmit={false}
+            />
+
+          </Form>
+
+          <Button
+            title="Cadastrar"
+            bgColor={colors.green}
+            color={colors.black}
+            onPress={handleNewAccount}
+            activeOpacity={0.7}
           />
 
-          <PasswordInput
-            ref={confirmPasswordRef}
-            placeholder="Confirmar senha"
-            iconName="lock"
-            value={confirmPassword}
-            onChangeText={setConfirmPassword}
-            onSubmitEditing={() => Keyboard.dismiss()}
-            blurOnSubmit={false}
-          />
-
-        </Form>
-
-        <Button
-          title="Cadastrar"
-          bgColor={colors.green}
-          color={colors.black}
-          onPress={handleNewAccount}
-          activeOpacity={0.7}
-        />
-
-      </ScrollView>
-    </Container>
+        </ScrollView>
+      </Container>
+    </Root>
   );
 }

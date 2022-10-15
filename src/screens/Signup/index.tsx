@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
-import { Alert, ScrollView, TouchableOpacity, Keyboard } from "react-native";
+import { ScrollView, TouchableOpacity, Keyboard } from "react-native";
+
+import { Root, Popup } from "popup-ui-new";
 
 import * as Yup from "yup";
 import { useNavigation } from "@react-navigation/native";
@@ -50,7 +52,14 @@ export function Signup() {
 
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
-        Alert.alert(error.message);
+        Popup.show({
+          type: "Danger",
+          title: "Registro",
+          button: true,
+          textBody: error.message,
+          buttonText: "Ok",
+          callback: () => Popup.hide()
+        });
       }
     }
 
@@ -61,69 +70,71 @@ export function Signup() {
   }
 
   return (
-    <Container>
-      <StatusBar style="light" translucent={false} backgroundColor={colors.background} />
-      <ScrollView>
+    <Root>
+      <Container>
+        <StatusBar style="light" translucent={false} backgroundColor={colors.background} />
+        <ScrollView>
 
-        <Header>
-          <TouchableOpacity onPress={handleGoback}>
-            <Feather size={24} name="arrow-left" color={colors.gray200} />
-          </TouchableOpacity>
+          <Header>
+            <TouchableOpacity onPress={handleGoback}>
+              <Feather size={24} name="arrow-left" color={colors.gray200} />
+            </TouchableOpacity>
 
-          <BulletWrapper>
-            <Bullet active />
-            <Bullet />
-          </BulletWrapper>
-        </Header>
+            <BulletWrapper>
+              <Bullet active />
+              <Bullet />
+            </BulletWrapper>
+          </Header>
 
-        <Form>
-          <Title>cadastre-se{"\n"}abaixo</Title>
-          <SectionTitle>1. Dados</SectionTitle>
+          <Form>
+            <Title>cadastre-se{"\n"}abaixo</Title>
+            <SectionTitle>1. Dados</SectionTitle>
 
-          <TextInput
-            iconName="people-alt"
-            placeholder="Nome"
-            autoCapitalize="words"
-            value={name}
-            onChangeText={setName}
-            onSubmitEditing={() => emailRef.current.focus()}
-            blurOnSubmit={false}
+            <TextInput
+              iconName="people-alt"
+              placeholder="Nome"
+              autoCapitalize="words"
+              value={name}
+              onChangeText={setName}
+              onSubmitEditing={() => emailRef.current.focus()}
+              blurOnSubmit={false}
+            />
+
+            <TextInput
+              ref={emailRef}
+              iconName="mail"
+              keyboardType="email-address"
+              placeholder="E-mail"
+              autoCapitalize="none"
+              value={email}
+              onChangeText={setEmail}
+              onSubmitEditing={() => usernameRef.current.focus()}
+              blurOnSubmit={false}
+            />
+
+            <TextInput
+              ref={usernameRef}
+              iconName="account-box"
+              placeholder="Usuário"
+              autoCapitalize="none"
+              value={username}
+              onChangeText={setUsername}
+              onSubmitEditing={() => Keyboard.dismiss()}
+              blurOnSubmit={false}
+            />
+
+          </Form>
+
+          <Button
+            title="Próximo"
+            bgColor={colors.green}
+            color={colors.black}
+            onPress={handleNextSignUp}
+            activeOpacity={0.7}
           />
 
-          <TextInput
-            ref={emailRef}
-            iconName="mail"
-            keyboardType="email-address"
-            placeholder="E-mail"
-            autoCapitalize="none"
-            value={email}
-            onChangeText={setEmail}
-            onSubmitEditing={() => usernameRef.current.focus()}
-            blurOnSubmit={false}
-          />
-
-          <TextInput
-            ref={usernameRef}
-            iconName="account-box"
-            placeholder="Usuário"
-            autoCapitalize="none"
-            value={username}
-            onChangeText={setUsername}
-            onSubmitEditing={() => Keyboard.dismiss()}
-            blurOnSubmit={false}
-          />
-
-        </Form>
-
-        <Button
-          title="Próximo"
-          bgColor={colors.green}
-          color={colors.black}
-          onPress={handleNextSignUp}
-          activeOpacity={0.7}
-        />
-
-      </ScrollView>
-    </Container>
+        </ScrollView>
+      </Container>
+    </Root>
   );
 }

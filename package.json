@@ -16,11 +16,14 @@
     "@react-navigation/stack": "^6.3.1",
     "@supabase/supabase-js": "^2.0.0",
     "@types/react-native-dotenv": "^0.2.0",
+    "add": "^2.0.6",
     "axios": "^0.27.2",
+    "deprecated-react-native-prop-types": "^2.3.0",
     "eslint": "^8.24.0",
     "expo": "~46.0.13",
     "expo-splash-screen": "~0.16.2",
     "expo-status-bar": "~1.4.0",
+    "popup-ui-new": "^1.0.0",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-native": "0.69.6",
@@ -36,6 +39,7 @@
     "styled-components": "^5.3.3",
     "styled-components-react-native": "^1.0.0",
     "uuid": "^9.0.0",
+    "yarn": "^1.22.19",
     "yup": "^0.32.11"
   },
   "devDependencies": {

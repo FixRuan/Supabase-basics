@@ -1,4 +1,6 @@
 import React from "react";
+import {TouchableOpacity} from "react-native";
+
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { useTheme } from "styled-components/native";
@@ -10,7 +12,6 @@ import {
   ButtonTitle,
   Container, Title
 } from "./styles";
-import { TouchableOpacity } from "react-native";
 
 export function FinishSignUp() {
   const { colors } = useTheme();
@@ -31,6 +32,7 @@ export function FinishSignUp() {
       <Button onPress={handleGoHome} as={TouchableOpacity} activeOpacity={0.8}>
         <ButtonTitle>OK</ButtonTitle>
       </Button>
+
     </Container>
   );
 }
