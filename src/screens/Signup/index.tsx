@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Alert, ScrollView, TouchableOpacity } from "react-native";
+import React, { useRef, useState } from "react";
+import { Alert, ScrollView, TouchableOpacity, Keyboard } from "react-native";
 
 import * as Yup from "yup";
 import { useNavigation } from "@react-navigation/native";
@@ -32,6 +32,8 @@ export function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
+  const emailRef = useRef(null);
+  const usernameRef = useRef(null);
 
   const { colors } = useTheme();
   const navigation = useNavigation();
@@ -84,23 +86,31 @@ export function Signup() {
             autoCapitalize="words"
             value={name}
             onChangeText={setName}
+            onSubmitEditing={() => emailRef.current.focus()}
+            blurOnSubmit={false}
           />
 
           <TextInput
+            ref={emailRef}
             iconName="mail"
             keyboardType="email-address"
             placeholder="E-mail"
             autoCapitalize="none"
             value={email}
             onChangeText={setEmail}
+            onSubmitEditing={() => usernameRef.current.focus()}
+            blurOnSubmit={false}
           />
 
           <TextInput
+            ref={usernameRef}
             iconName="account-box"
             placeholder="Usuário"
             autoCapitalize="none"
             value={username}
             onChangeText={setUsername}
+            onSubmitEditing={() => Keyboard.dismiss()}
+            blurOnSubmit={false}
           />
 
         </Form>

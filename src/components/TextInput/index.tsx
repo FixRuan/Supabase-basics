@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react/display-name */
+import React, { forwardRef, useState } from "react";
 import { TextInput as RNInput, TextInputProps } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
@@ -10,8 +11,7 @@ interface Props extends TextInputProps {
   value?: string;
 }
 
-export function TextInput({ iconName, value, ...rest }: Props) {
-
+export const TextInput = forwardRef<RNInput, Props>(({ value, iconName, ...rest }, ref) => {
   const [isFocused, setIsfocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
 
@@ -35,6 +35,7 @@ export function TextInput({ iconName, value, ...rest }: Props) {
       />
 
       <Input
+        ref={ref}
         {...rest}
         as={RNInput}
         placeholderTextColor={colors.gray100}
@@ -43,4 +44,4 @@ export function TextInput({ iconName, value, ...rest }: Props) {
       />
     </Container>
   );
-}
+});
