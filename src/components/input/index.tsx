@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { TextInputProps, TouchableOpacity, View } from "react-native";
+/* eslint-disable react/display-name */
+import React, { useState, forwardRef } from "react";
+import { TextInput, TextInputProps, TouchableOpacity, View } from "react-native";
 
 import {
   Container,
@@ -17,7 +18,9 @@ interface InputProps extends TextInputProps {
   value?: string;
 }
 
-export function Input({ value, type, iconName, label, ...rest }: InputProps) {
+export const Input = forwardRef<TextInput, InputProps>((
+  { value, label, iconName, type, ...rest }, ref) => {
+
   const [hidePassword, setHidePassword] = useState(true);
   const [isFocused, setIsfocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
@@ -48,6 +51,7 @@ export function Input({ value, type, iconName, label, ...rest }: InputProps) {
         />
 
         <Inputt
+          ref={ref}
           {...rest}
           placeholderTextColor={colors.gray100}
           secureTextEntry={hidePassword}
@@ -67,4 +71,56 @@ export function Input({ value, type, iconName, label, ...rest }: InputProps) {
       </Container>
     </View>
   );
-}
+});
+
+// export function Input({ value, type, iconName, label, ...rest }: InputProps) {
+//   const [hidePassword, setHidePassword] = useState(true);
+//   const [isFocused, setIsfocused] = useState(false);
+//   const [isFilled, setIsFilled] = useState(false);
+
+//   const { colors } = useTheme();
+
+//   function handleHidePassword() {
+//     setHidePassword(!hidePassword);
+//   }
+
+//   function handleInputFocus() {
+//     setIsfocused(true);
+//   }
+
+//   function handleInputBlur() {
+//     setIsfocused(false);
+//     setIsFilled(!!value);
+//   }
+
+//   return (
+//     <View>
+//       <InputLabel>{label}</InputLabel>
+//       <Container>
+//         <MaterialIcons
+//           name={iconName}
+//           size={22}
+//           color={isFocused || isFilled && value != "" ? colors.green : colors.gray100}
+//         />
+
+//         <Inputt
+//           {...rest}
+//           placeholderTextColor={colors.gray100}
+//           secureTextEntry={hidePassword}
+//           onFocus={handleInputFocus}
+//           onBlur={handleInputBlur}
+//         />
+
+//         {type && (
+//           <TouchableOpacity onPress={handleHidePassword}>
+//             <Feather
+//               name={hidePassword ? "eye" : "eye-off"}
+//               size={20}
+//               color={colors.gray100}
+//             />
+//           </TouchableOpacity>
+//         )}
+//       </Container>
+//     </View>
+//   );
+// }

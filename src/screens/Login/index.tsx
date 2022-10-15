@@ -1,5 +1,14 @@
-import React, { useState } from "react";
-import { ScrollView, TouchableOpacity, Dimensions, Alert } from "react-native";
+import React, { useRef, useState } from "react";
+
+import {
+  ScrollView,
+  TouchableOpacity,
+  Dimensions,
+  Alert,
+  TextInput,
+  Keyboard
+} from "react-native";
+
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { useTheme } from "styled-components/native";
@@ -33,6 +42,7 @@ interface UserResponseProps {
 
 
 export function Login() {
+  const passWordRef = useRef<TextInput>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -79,9 +89,12 @@ export function Login() {
           keyboardType="email-address"
           value={email}
           onChangeText={setEmail}
+          onSubmitEditing={() => passWordRef.current.focus()}
+          blurOnSubmit={false}
         />
 
         <Input
+          ref={passWordRef}
           iconName="lock"
           secureTextEntry={true}
           placeholder="Digite sua senha"
@@ -89,6 +102,8 @@ export function Login() {
           value={password}
           onChangeText={setPassword}
           type="password"
+          onSubmitEditing={() => Keyboard.dismiss()}
+          blurOnSubmit={false}
         />
 
         <Button as={TouchableOpacity} onPress={handleLogin} activeOpacity={0.8}>
