@@ -12,3 +12,22 @@ Aplicação para aprender a utilizar os recursos do supabase
 - [ ] ...
 - [ ] ...
  
+## Como executar a aplicação 
+
+### Instalação
+1. Clone o repositório
+```bash
+git clone https://github.com/FixRuan/Supabase-basics
+```
+2. Acesse a pasta do projeto
+```bash
+cd Supabase-basics
+```
+3. Instale as dependências necessárias 
+```bash
+yarn
+```
+4. Execute o projeto
+```bash
+yarn start
+```
