@@ -13,6 +13,7 @@ import { useTheme } from "styled-components/native";
 import { PasswordInput } from "../../components/PasswordInput";
 import { Bullet } from "../../components/Bullet";
 import { Button } from "../../components/Button";
+import { ParamsProps } from "./NextSignupTypes";
 
 import {
   BulletWrapper,
@@ -22,14 +23,6 @@ import {
   SectionTitle,
   Title
 } from "./styles";
-
-interface ParamsProps {
-  user: {
-    name: string;
-    email: string;
-    username: string;
-  }
-}
 
 const schema = Yup.object().shape({
   password: Yup.string().required("Senha obrigatória").min(6, "Mínimo de 6 caracteres"),

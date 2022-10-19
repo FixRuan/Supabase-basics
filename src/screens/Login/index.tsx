@@ -15,6 +15,7 @@ import { Root, Popup } from "popup-ui-new";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useUserController } from "../../hooks/UserController/userController";
+import { UserResponseProps } from "./loginTypes";
 
 import LogoSVG from "../../assets/logo.svg";
 import { Input } from "../../components/input";
@@ -32,15 +33,6 @@ import {
   UnderLineText,
 } from "./styles";
 
-interface UserResponseProps {
-  created_at: string;
-  email: string;
-  id: number;
-  name: string;
-  username: string;
-}
-
-
 export function Login() {
   const passWordRef = useRef<TextInput>(null);
   const [email, setEmail] = useState("");
@@ -56,7 +48,7 @@ export function Login() {
   }
 
   async function handleLogin() {
-    const data: any = await EmailSignInAuth(email, password);
+    const data = await EmailSignInAuth(email, password);
 
     if (data.message === "Invalid login credentials") {
 
