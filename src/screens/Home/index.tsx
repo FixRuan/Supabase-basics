@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { BackHandler } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useTheme } from "styled-components/native";
 
@@ -17,6 +18,11 @@ export function Home() {
     await signOut();
     navigation.navigate("login");
   }
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", () => true);
+    return () => backHandler.remove();
+  }, []);
 
   return (
     <Container>

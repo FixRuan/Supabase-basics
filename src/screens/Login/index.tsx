@@ -1,11 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import {
   ScrollView,
   TouchableOpacity,
   Dimensions,
   TextInput,
-  Keyboard
+  Keyboard,
+  BackHandler
 } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
@@ -69,6 +70,11 @@ export function Login() {
     navigation.navigate("Home");
   }
 
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", () => true);
+    return () => backHandler.remove();
+  }, []);
+
   return (
     <Root>
       <Container styled={{ width: windowWidth, minHeight: windowHeight }}>
@@ -92,6 +98,7 @@ export function Login() {
             onChangeText={setEmail}
             onSubmitEditing={() => passWordRef.current.focus()}
             blurOnSubmit={false}
+            autoCapitalize="none"
           />
 
           <Input
@@ -105,6 +112,7 @@ export function Login() {
             type="password"
             onSubmitEditing={() => Keyboard.dismiss()}
             blurOnSubmit={false}
+            autoCapitalize="none"
           />
 
           <Button as={TouchableOpacity} onPress={handleLogin} activeOpacity={0.8}>

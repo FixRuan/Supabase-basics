@@ -64,7 +64,14 @@ export function NextSignup() {
       const data = await CreateUser(newUser);
 
       if (data === "E-mail em uso") {
-        return Alert.alert(data);
+        return Popup.show({
+          type: "Danger",
+          title: "Cadastro",
+          button: true,
+          textBody: data,
+          buttonText: "Ok",
+          callback: () => Popup.hide()
+        });
       }
 
       navigation.navigate("FinishSignUp");
