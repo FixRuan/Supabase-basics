@@ -3,8 +3,16 @@
     "name": "supabase",
     "slug": "supabase",
     "version": "1.0.0",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/_splash.png",
+      "backgroundColor": "#3ECF8E"
+    },
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "android": {
+      "package": "com.supabase"
+    }
   }
 }
