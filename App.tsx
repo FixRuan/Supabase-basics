@@ -1,4 +1,5 @@
 import React from "react";
+import "deprecated-react-native-prop-types";
 import { NavigationContainer } from "@react-navigation/native";
 import { StackRoute } from "./src/Router";
 
