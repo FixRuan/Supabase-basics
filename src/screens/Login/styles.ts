@@ -1,11 +1,12 @@
 import styled from "styled-components/native";
+import { Platform } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { getBottomSpace } from "react-native-iphone-x-helper";
 
 export const Container = styled.SafeAreaView`
    flex: 1;
    background-color: ${({ theme }) => theme.colors.background};
-   padding-bottom: ${getBottomSpace()} + 4px;
+   padding-bottom: ${Platform.OS === "ios" ? getBottomSpace() : 0}px;
 `;
 
 export const Title = styled.Text`
