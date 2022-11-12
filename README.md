@@ -11,6 +11,16 @@ Aplicação para aprender a utilizar os recursos do supabase
 - [ ] ...
 - [ ] ...
 - [ ] ...
+
+## Tecnologias utilizadas
+- React Native
+- Typescript
+- Supabase
+- Expo
+- Styled Components
+- React Navigation v6
+- Popup-ui
+- react native iphone x helper
  
 ## Como executar a aplicação 
 
