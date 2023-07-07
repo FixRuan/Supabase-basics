@@ -41,3 +41,5 @@ yarn
 ```bash
 yarn start
 ```
+
+[![Skills](https://skillicons.dev/icons?i=typescript,supabase,react)](https://skillicons.dev)
